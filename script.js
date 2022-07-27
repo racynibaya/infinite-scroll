@@ -22,8 +22,8 @@ const imageLoaded = function () {
   imagesLoaded++;
   if (imagesLoaded === totalImages) {
     ready = true;
-    loader.hidden = true;
     body.style.removeProperty('overFlow');
+    loader.hidden = true;
   }
 };
 
@@ -63,6 +63,7 @@ const getPhoto = async function () {
     const response = await fetch(apiURL);
     photosArr = await response.json();
 
+    body.style.overflow = 'hidden';
     displayPhoto();
   } catch (error) {
     // Catch error
