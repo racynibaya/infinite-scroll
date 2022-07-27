@@ -47,6 +47,14 @@ h1 {
   width: 100%;
 }
 
+/* Disable scroll */
+.disable-scroll {
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+  position: fixed;
+}
+
 @media screen and (max-width: 600px) {
   h1 {
     font-size: 20px;

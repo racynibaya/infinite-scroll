@@ -1,3 +1,4 @@
+const body = document.querySelector('body');
 const imageContainer = document.getElementById('image-container');
 const loader = document.getElementById('loader');
 
@@ -22,6 +23,7 @@ const imageLoaded = function () {
   if (imagesLoaded === totalImages) {
     ready = true;
     loader.hidden = true;
+    body.style.removeProperty('overFlow');
   }
 };
 
@@ -29,6 +31,7 @@ const displayPhoto = function () {
   imagesLoaded = 0;
   totalImages = photosArr.length;
   console.log('total images', totalImages);
+
   photosArr.forEach(photo => {
     const item = document.createElement('a');
 
