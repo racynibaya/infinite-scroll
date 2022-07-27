@@ -7,6 +7,8 @@ let ready = false;
 let imagesLoaded = 0;
 let totalImages = 0;
 
+let img;
+
 const count = 30;
 const apiKey = 'GarSNaDMsojS9fi2DsREH7HLrfkwCsrYhCMkx8feLaE';
 
@@ -28,6 +30,8 @@ const imageLoaded = function () {
 };
 
 const displayPhoto = function () {
+  body.style.overflow = 'hidden';
+
   imagesLoaded = 0;
   totalImages = photosArr.length;
   console.log('total images', totalImages);
@@ -40,7 +44,7 @@ const displayPhoto = function () {
       target: '_blank',
     });
 
-    const img = document.createElement('img');
+    img = document.createElement('img');
     img.setAttribute('src', photo.urls.regular);
     img.setAttribute('alt', photo.alt_description);
     img.setAttribute('title', photo.alt_description);
@@ -63,7 +67,6 @@ const getPhoto = async function () {
     const response = await fetch(apiURL);
     photosArr = await response.json();
 
-    body.style.overflow = 'hidden';
     displayPhoto();
   } catch (error) {
     // Catch error
