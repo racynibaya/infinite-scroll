@@ -6,13 +6,14 @@ let photosArr = [];
 let ready = false;
 let imagesLoaded = 0;
 let totalImages = 0;
+let isInitialLoad = true;
 
 let img;
 
-const count = 30;
+const count = 5;
 const apiKey = 'GarSNaDMsojS9fi2DsREH7HLrfkwCsrYhCMkx8feLaE';
 
-const apiURL = `https://api.unsplash.com/photos/random?client_id=${apiKey}&count=${count}`;
+let apiURL = `https://api.unsplash.com/photos/random?client_id=${apiKey}&count=${count}`;
 
 const setAttributes = function (element, attributes) {
   for (const key in attributes) {
@@ -20,9 +21,14 @@ const setAttributes = function (element, attributes) {
   }
 };
 
+const updateURL = function (imageCount) {
+  apiURL = `https://api.unsplash.com/photos/random?client_id=${apiKey}&count=${imageCount}`;
+};
+
 const imageLoaded = function () {
   imagesLoaded++;
   if (imagesLoaded === totalImages) {
+    count = 30;
     ready = true;
     body.style.removeProperty('overFlow');
     loader.hidden = true;
@@ -68,6 +74,11 @@ const getPhoto = async function () {
     photosArr = await response.json();
 
     displayPhoto();
+
+    if (isInitialLoad) {
+      updateURL(30);
+      isInitialLoad = false;
+    }
   } catch (error) {
     // Catch error
   }
